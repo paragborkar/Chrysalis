@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';  // Import Link from react-router-dom
 import { GrInstagram } from 'react-icons/gr';
 
 const Header: React.FC = () => {
@@ -29,22 +29,21 @@ const Header: React.FC = () => {
                     </div>
 
                     {/* Desktop menu */}
-                    <div className="hidden md:flex space-x-8 items-center"> {/* Added items-center */}
-                        <a
-                            key="home"
-                            href="/"
+                    <div className="hidden md:flex space-x-8 items-center">
+                        <Link
+                            to="/"
                             className={`text-white transition-colors duration-300 ${location.pathname === '/' ? 'border-b-2 border-blue-500 font-bold' : ''}`}
                         >
                             Home
-                        </a>
+                        </Link>
                         {["Gallery", "Members", "Winners"].map((item) => (
-                            <a
+                            <Link
                                 key={item}
-                                href={`/${item.toLowerCase()}`}
+                                to={`/${item.toLowerCase()}`}
                                 className={`text-white transition-colors duration-300 ${location.pathname === `/${item.toLowerCase()}` ? 'border-b-2 border-blue-500 font-bold' : ''}`}
                             >
                                 {item}
-                            </a>
+                            </Link>
                         ))}
 
                         {/* Instagram Logo with Hover Effect */}
@@ -74,23 +73,22 @@ const Header: React.FC = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-black/95 backdrop-blur-lg border-b-2 border-gray-700/75">
                     <div className="px-2 pt-2 pb-3 space-y-1">
-                        <a
-                            key="home"
-                            href="/"
+                        <Link
+                            to="/"
                             className={`block px-3 py-2 text-white transition-colors duration-300 ${location.pathname === '/' ? 'border-b-2 border-blue-500 font-bold' : ''}`}
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Home
-                        </a>
+                        </Link>
                         {["Gallery", "Members", "Winners"].map((item) => (
-                            <a
+                            <Link
                                 key={item}
-                                href={`/${item.toLowerCase()}`}
+                                to={`/${item.toLowerCase()}`}
                                 className={`block px-3 py-2 text-white transition-colors duration-300 ${location.pathname === `/${item.toLowerCase()}` ? 'border-b-2 border-blue-500 font-bold' : ''}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 {item}
-                            </a>
+                            </Link>
                         ))}
 
                         {/* Instagram Logo */}
@@ -98,7 +96,7 @@ const Header: React.FC = () => {
                             href="https://www.instagram.com/chrysalis_2k25?igsh=bjlwcWh4Y3l5aGR2"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-3 py-2 text-white hover:text-pink-500 transition-all duration-300 hover:scale-110 transform" // Added block, px-3, py-2
+                            className="block px-3 py-2 text-white hover:text-pink-500 transition-all duration-300 hover:scale-110 transform"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             <GrInstagram size={30} />
@@ -110,4 +108,4 @@ const Header: React.FC = () => {
     );
 };
 
-export default Header;  
+export default Header;
